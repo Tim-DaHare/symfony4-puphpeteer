@@ -18,13 +18,12 @@ class PdfService {
     public function generatePdfFromUrl(string $url, bool $deleteAfterwards = true) {
         $puppeteer = new Puppeteer;
 
-        $hostname = parse_url($url)['host'];
-        if (empty($hostname)) {
+        $parselUrl = parse_url($url);
+        if (!$parselUrl) {
             return false;
         }
 
-        $filename = explode('.', $hostname)[1];
-        $filePath = realpath('../var/pdf/').'/'.$filename.'.pdf';
+        $filePath = realpath('../var/pdf/').'/'.uniqid('pdf_', true).'.pdf';
 
         $browser = $puppeteer->launch();
         $page = $browser->newPage();

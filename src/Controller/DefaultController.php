@@ -13,7 +13,7 @@ class DefaultController extends AbstractController {
     * @Route("/")
     */
     public function index(PdfService $pdfService) {
-        $pdf = $pdfService->generatePdfFromUrl('https://symfony.com/doc/current/service_container.html');
+        $pdf = $pdfService->generatePdfFromUrl('https://google.com/');
 
         if (!$pdf) {
             throw new $this->createNotFoundException();
